@@ -1,17 +1,18 @@
 \input opmac
 
-% user input
+% user inputs
 \def\Name{Jack Johnson}
-\def\Address{Jenstejnska 1966/1, Praha 2}
-\def\Birthday{12/09/1996}
-\def\Nationality{Ukrainian}
-\def\Phone{+420 730 976 561}
-\def\Email{rozumden@fel.cvut.cz}
-\def\Homepage{cmp.felk.cvut.cz/rozumden}
+\def\Address{Zikova 123/4, Praha 6}
+\def\Birthday{18/03/1992}
+\def\Nationality{Czech}
+\def\Phone{+420 123 456 789}
+\def\Email{name@fel.cvut.cz}
+\def\Homepage{noname.github.io}
 \def\Photo{photo.jpg} %% sould be close to square
 
-\def\MainColour{\Blue}
-%%%%%%%% user input ends
+\def\mclr{\Black} %% main colour
+\def\sclr{\Blue} %% secondary colour
+%%%%%%%% user inputs end
 
 % main macros
 % \def\makeName#1{
@@ -24,12 +25,21 @@
 
 \def\infoItem#1#2{\hbox to 0.4\hsize{ 
 		\hbox to 0.12\hsize{\it #1: \hfil} #2\hfil}}
-\def\myLine{\hbox to 0.3\hsize{\vbox to 2mm{\hrule width 0.3\hsize}}}
+\def\myLine#1{\hbox to #1\hsize{\vbox to 2mm{\hrule width #1\hsize}}}
+\def\fatLine#1{\hbox to #1\hsize{\vbox to 2mm{\sclr \hrule width #1\hsize depth 1mm \mclr}}}
 
-\def\secFrac{0.3}
+\def\secFrac{0.23}
+\def\restFrac{0.75}
+\def\startSec#1{\hbox{\fatLine{\secFrac} \secfont \sclr #1 \mclr}}
+\def\finishSec{\bigskip}
 
+\def\onerow#1#2#3{\hbox{%
+\vbox{\noindent\hsize=\secFrac\hsize {\bf #1 -- #2}}%
+\vbox{\noindent \kern2mm \hsize=\restFrac\hsize #3}
+}\bigskip}
 % main body
 \nopagenumbers
+\mclr
 
 \ifx \Name \undefined \makeName{No Name} \else \makeName{\Name} \fi
 \bigskip
@@ -46,10 +56,24 @@
 \ifx \Homepage \undefined  \else \infoItem{Homepage}{\Homepage} \fi 
 }}
 
-\hbox to\hsize{\myLine \hfil \hbox{\chapfont Curriculum Vitae} \hfil \myLine} 
+\hbox to\hsize{\myLine{0.3} \hfil \hbox{\chapfont Curriculum Vitae} \hfil \myLine{0.3}} 
 \bigskip 
 
-{\secfont \MainColour Education}
+%% user inputs
+\startSec{Education}
+\onerow{Jul 2017}{Current}{Msc degree from Czech Technical University in Prague with major in computer vision. Expected graduation in June 2019.}
+\onerow{Sep 2014}{Jun 2017}{BSc degree from Charles University with major in computer science. Graduated with distinctions.}
+\onerow{Jul 2015}{Aug 2015}{Summer school in Prague.}
+\finishSec
 
+\startSec{Work Experience}
+\onerow{Sep 2014}{Jun 2017}{BSc degree from Charles University with major in computer science. Graduated with distinctions.}
+\onerow{Jul 2015}{Aug 2015}{Summer school in Prague.}
+\finishSec
+
+\startSec{Skills}
+\onerow{Jul 2015}{Aug 2015}{Summer school in Prague.}
+\finishSec
+%%%%%% user inputs end
 
 \end
