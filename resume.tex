@@ -9,6 +9,8 @@
 \def\Email{rozumden@fel.cvut.cz}
 \def\Homepage{cmp.felk.cvut.cz/rozumden}
 \def\Photo{photo.jpg} %% sould be close to square
+
+\def\MainColour{\Blue}
 %%%%%%%% user input ends
 
 % main macros
@@ -24,6 +26,8 @@
 		\hbox to 0.12\hsize{\it #1: \hfil} #2\hfil}}
 \def\myLine{\hbox to 0.3\hsize{\vbox to 2mm{\hrule width 0.3\hsize}}}
 
+\def\secFrac{0.3}
+
 % main body
 \nopagenumbers
 
@@ -31,9 +35,9 @@
 \bigskip
 
 \hbox to\hsize{
-\hbox{\picw=0.2\hsize \inspic{\Photo} \hfil}
+\hbox{\ifx \Photo \undefined  \else \picw=0.2\hsize \inspic{\Photo} \fi \hfil}
 \hfil
-\vbox to 0.1\vsize{
+\vbox to 0.13\vsize{
 \ifx \Address \undefined  \else \infoItem{Address}{\Address} \fi
 \ifx \Birthday \undefined  \else \infoItem{Birthday}{\Birthday} \fi
 \ifx \Nationality \undefined  \else \infoItem{Nationality}{\Nationality} \fi
@@ -45,7 +49,7 @@
 \hbox to\hsize{\myLine \hfil \hbox{\chapfont Curriculum Vitae} \hfil \myLine} 
 \bigskip 
 
-{\secfont Education}
+{\secfont \MainColour Education}
 
 
 \end
