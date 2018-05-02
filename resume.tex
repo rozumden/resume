@@ -1,15 +1,49 @@
 \input opmac
 
-\def\name{Denys Rozumnyi}
-\def\birthday{12/09/1996}
-\def\address{Jenstejnska 1966/1, Praha}
-\def\phone{+420 730 976 561}
+% user input
+\def\Name{Jack Johnson}
+\def\Address{Jenstejnska 1966/1, Praha 2}
+\def\Birthday{12/09/1996}
+\def\Phone{+420 730 976 561}
+\def\Email{rozumden@fel.cvut.cz}
+\def\Homepage{cmp.felk.cvut.cz/rozumden}
+\def\Photo{photo.jpg} %% sould be close to square
+%%%%%%%% user input ends
 
-\chap \name
-\birthday 
+% main macros
+% \def\makeName#1{
+% \hbox{\vrule\vbox{\hrule%
+% \smallskip%
+% \hbox to\hsize{\hfil \bf \titfont #1 \hfil}%
+% \smallskip \hrule}\vrule}}
+\def\makeName#1{
+\hbox to\hsize{\hfil \bf \titfont #1 \hfil}}
 
-\address 
+\def\infoItem#1#2{\hbox to 0.4\hsize{ 
+		\hbox to 0.12\hsize{\it #1: \hfil} #2\hfil}}
+\def\myLine{\hbox to 0.3\hsize{\vbox to 2mm{\hrule width 0.3\hsize}}}
 
-\phone
- 
-\bye
+% main body
+\nopagenumbers
+
+\ifx \Name \undefined \makeName{No Name} \else \makeName{\Name} \fi
+\bigskip
+
+\hbox to\hsize{
+\hbox{\picw=0.2\hsize \inspic{\Photo} \hfil}
+\hfil
+\vbox to 0.1\vsize{
+\ifx \Address \undefined  \else \infoItem{Address}{\Address} \fi
+\ifx \Birthday \undefined  \else \infoItem{Birthday}{\Birthday} \fi
+\ifx \Phone \undefined  \else \infoItem{Phone}{\Phone} \fi
+\ifx \Email \undefined  \else \infoItem{Email}{\Email} \fi 
+\ifx \Homepage \undefined  \else \infoItem{Homepage}{\Homepage} \fi 
+}}
+
+\hbox to\hsize{\myLine \hfil \hbox{\chapfont Curriculum Vitae} \hfil \myLine} 
+\bigskip 
+
+{\secfont Education}
+
+
+\end
