@@ -1,4 +1,5 @@
 \input opmac
+%https://tex.stackexchange.com/questions/308110/can-two-vtop-boxes-exist-side-by-side
 
 % user inputs
 \def\Name{Jack Johnson}
@@ -13,6 +14,9 @@
 \def\mclr{\Black} %% main colour
 \def\sclr{\Blue} %% secondary colour
 %%%%%%%% user inputs end
+
+%https://tex.stackexchange.com/questions/12537/how-can-i-make-a-horizontal-dashed-line
+\def\dashfill{\cleaders\hbox to2mm{-}\hfill}
 
 % main macros
 % \def\makeName#1{
@@ -30,13 +34,31 @@
 
 \def\secFrac{0.23}
 \def\restFrac{0.75}
-\def\startSec#1{\hbox{\fatLine{\secFrac} \secfont \sclr #1 \mclr}}
+\def\startSec#1{\hbox{\fatLine{\secFrac} \secfont \sclr #1 \mclr} \smallskip}
 \def\finishSec{\bigskip}
 
-\def\onerow#1#2#3{\hbox{%
-\vbox{\noindent\hsize=\secFrac\hsize {\bf #1 -- #2}}%
+\def\onerow#1#2#3{\hbox to\hsize{%
+\vbox{\noindent\hsize=\secFrac\hsize{\bf #1 -- #2 \par \noindent \dashfill \hfill}}%
 \vbox{\noindent \kern2mm \hsize=\restFrac\hsize #3}
 }\bigskip}
+\def\onerowNoDue#1#2{\hbox to\hsize{%
+\vbox{\noindent\hsize=\secFrac\hsize{\bf #1}}%
+\vbox{\noindent \kern2mm \hsize=\restFrac\hsize #2}
+}\smallskip}
+
+\def\secFracShort{0.12}
+\def\restFracShort{0.85}
+\def\startSecShort#1{\hbox{\fatLine{\secFracShort} \secfont \sclr #1 \mclr} \smallskip}
+\def\onerowshort#1#2{\hbox to\hsize{%
+\vbox{\noindent\hsize=\secFracShort\hsize{\bf #1 }}%
+\vbox{\noindent \kern2mm \hsize=\restFracShort\hsize #2}
+}\smallskip}
+
+\def\twocols#1#2{\hbox to\hsize{%
+\vbox{\noindent\hsize=0.5\hsize #1}%
+\vbox{\noindent\hsize=0.5\hsize #2}%
+}}
+
 % main body
 \nopagenumbers
 \mclr
@@ -71,9 +93,24 @@
 \onerow{Jul 2015}{Aug 2015}{Summer school in Prague.}
 \finishSec
 
-\startSec{Skills}
-\onerow{Jul 2015}{Aug 2015}{Summer school in Prague.}
+\startSecShort{Awards}
+\onerowshort{Nov 2017}{Josef Hlavka's Award (Cena Josefa Hlavky) -- award for best students and graduates.}
+\onerowshort{Aug 2017}{Dean's Award for an exceptional bachelor thesis.}
+\onerowshort{Jul 2017}{Bachelor degree with distinctions.}
 \finishSec
+
+\twocols{%
+\startSec{Skills}
+\onerowNoDue{Advanced}{Matlab, C++, Java, Python.}
+\onerowNoDue{Medium}{MySQL, Bash, \TeX, \LaTeX.}
+\onerowNoDue{Basic}{Prolog, Lisp, Haskell.}
+\finishSec}{%
+\startSec{Languages}
+\onerowNoDue{Fluent}{English, Czech.}
+\onerowNoDue{Native}{Ukrainian.}
+\onerowNoDue{Basic}{French, German.}
+\finishSec}
+
 %%%%%% user inputs end
 
 \end
