@@ -1,5 +1,8 @@
 \input opmac
-%https://tex.stackexchange.com/questions/308110/can-two-vtop-boxes-exist-side-by-side
+\font\tenrm=ptmr7t
+\font\tenbf=ptmb7t
+\font\tenit=ptmri7t
+\tenrm
 
 % user inputs
 \def\Name{Jack Johnson}
@@ -28,7 +31,7 @@
 \hbox to\hsize{\hfil \bf \titfont #1 \hfil}}
 
 \def\infoItem#1#2{\hbox to 0.4\hsize{ 
-		\hbox to 0.12\hsize{\it #1: \hfil} #2\hfil}}
+		\hbox to 0.12\hsize{\hfil \it #1: } #2\hfil}}
 \def\myLine#1{\hbox to #1\hsize{\vbox to 2mm{\hrule width #1\hsize}}}
 \def\fatLine#1{\hbox to #1\hsize{\vbox to 2mm{\sclr \hrule width #1\hsize depth 1mm \mclr}}}
 
@@ -39,11 +42,11 @@
 
 \def\onerow#1#2#3{\hbox to\hsize{%
 \vbox{\noindent\hsize=\secFrac\hsize{\bf #1 -- #2 \par \noindent \dashfill \hfill}}%
-\vbox{\noindent \kern2mm \hsize=\restFrac\hsize #3}
+\vbox{\noindent \hsize=\restFrac\hsize #3}
 }\bigskip}
 \def\onerowNoDue#1#2{\hbox to\hsize{%
 \vbox{\noindent\hsize=\secFrac\hsize{\bf #1}}%
-\vbox{\noindent \kern2mm \hsize=\restFrac\hsize #2}
+\vbox{\noindent \hsize=\restFrac\hsize #2}
 }\smallskip}
 
 \def\secFracShort{0.12}
