@@ -6,7 +6,7 @@
 \def\sclr{\Blue} %% secondary colour
 
 %https://tex.stackexchange.com/questions/12537/how-can-i-make-a-horizontal-dashed-line
-\def\dashfill{\cleaders\hbox to2mm{-}\hfill}
+\def\dashfill{\cleaders\hbox to2mm{\hfil-\hfil} \hfill }
 
 % main macros
 % \def\makeName#1{
@@ -19,17 +19,18 @@
 
 \def\infoItem#1#2{\hbox to 0.4\hsize{ 
 		\hbox to 0.12\hsize{\hfil \it #1: } #2\hfil}}
-\def\myLine#1{\hbox to #1\hsize{\vbox to 2mm{\hrule width #1\hsize}}}
-\def\fatLine#1{\hbox to #1\hsize{\vbox to 2mm{\sclr \hrule width #1\hsize depth 1mm \mclr}}}
+\def\myLine#1{\hbox {\vbox {\hrule width #1\hsize}}}
+\def\fatLine#1{\hbox {\vbox to 2mm{\sclr \vfil \hrule width #1\hsize depth 1mm \vfil\mclr}}}
 
 \def\secFrac{0.23}
 \def\restFrac{0.75}
 \def\startSec#1{\hbox{\fatLine{\secFrac} \secfont \sclr #1 \mclr} \smallskip}
 \def\finishSec{\bigskip}
 
-\def\onerow#1#2#3{\hbox to\hsize{%
+\def\onerow#1#2#3{\hbox{%
 \vbox{\noindent\hsize=\secFrac\hsize{\bf #1 -- #2 \par \noindent \dashfill \hfill}}%
-\vbox{\noindent \hsize=\restFrac\hsize #3}
+\vbox{\noindent \hsize=\restFrac\hsize #3}%
+\hfill%
 }\bigskip}
 \def\onerowNoDue#1#2{\hbox to\hsize{%
 \vbox{\noindent\hsize=\secFrac\hsize{\bf #1}}%
@@ -39,7 +40,7 @@
 \def\secFracShort{0.12}
 \def\restFracShort{0.85}
 \def\startSecShort#1{\hbox{\fatLine{\secFracShort} \secfont \sclr #1 \mclr} \smallskip}
-\def\onerowshort#1#2{\hbox to\hsize{%
+\def\onerowshort#1#2{\hbox {%
 \vbox{\noindent\hsize=\secFracShort\hsize{\bf #1 }}%
 \vbox{\noindent \kern2mm \hsize=\restFracShort\hsize #2}
 }\smallskip}
@@ -60,12 +61,14 @@
 \hbox{\ifx \Photo \undefined  \else \picw=0.2\hsize \inspic{\Photo} \fi \hfil}
 \hfil
 \vbox to 0.13\vsize{
+\vfill
 \ifx \Address \undefined  \else \infoItem{Address}{\Address} \fi
 \ifx \Birthday \undefined  \else \infoItem{Birthday}{\Birthday} \fi
 \ifx \Nationality \undefined  \else \infoItem{Nationality}{\Nationality} \fi
 \ifx \Phone \undefined  \else \infoItem{Phone}{\Phone} \fi
 \ifx \Email \undefined  \else \infoItem{Email}{\Email} \fi 
 \ifx \Homepage \undefined  \else \infoItem{Homepage}{\Homepage} \fi 
+\vfill
 }}
 \hbox to\hsize{\myLine{0.3} \hfil \hbox{\chapfont Curriculum Vitae} \hfil \myLine{0.3}} 
 \bigskip 
